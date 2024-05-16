@@ -2,13 +2,10 @@ import axios from "axios";
 import {addvege, fetchData,deleteveg, editveg } from "../../Redux/vegetableSlice";
 import { backendurl } from "../../Backendlink";
 
-
-
-
 const token = sessionStorage.getItem("token");
 
 //getdata vegetable details
-export const getvegetale = async (dispatch) => {
+export const getvegetale = async (dispatch,token) => {
   try {
     const response = await axios.get(`${backendurl}/vegetable`, {
       headers: { Authorization: `Bearer ${token}` },

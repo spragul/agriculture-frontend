@@ -1,5 +1,61 @@
 /*vegetable list start*/
-.list-background{
-background-color: darkgray;
+.list-background {
+  background-color: darkgray;
+}
+.mybutton {
+  padding: 5px 20px 5px 20px;
+  margin: 5px;
+  border-radius: 5px;
+}
+.deletebutton {
+  background-color: crimson;
+  color: white;
+}
+.deletebutton:hover {
+  background-color: rgb(15, 149, 15);
+  color: white;
+}
+.Editbutton {
+  background-color: rgb(242, 242, 45);
+  color: black;
+}
+.Editbutton:hover {
+  background-color: aqua;
+  color: black;
+}
+.search-container {
+  width: auto;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+.search-bar {
+    margin-top: 25px;
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
 }
 /*vegetable list end*/
+
+/*Add vegetable start*/
+.vegetable-container {
+  padding: 10px;
+  margin: 5px;
+}
+.vegetable-header {
+  text-align: center;
+  padding: 5px;
+}
+.vegetable-form-container {
+  padding: 10px;
+  margin: 5px;
+}
+/*Add vegetable end*/
+.table-header{
+  text-align: center;
+}
+.chage-price-from{
+  display: flex;
+  justify-content: baseline;
+  flex-direction: row;
+}

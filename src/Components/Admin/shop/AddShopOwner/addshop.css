@@ -1,0 +1,13 @@
+.adduser-container {
+  padding: 10px;
+  margin: 5px;
+  height: 80dvh;
+}
+.adduser-text {
+  display: flex;
+  justify-content: center;
+}
+.adduer-form {
+  padding: 10px;
+  margin: 5px;
+}

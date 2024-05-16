@@ -11,6 +11,7 @@ import Mtest from "./Components/Market/m";
 import Addvegetable from "./Components/Market/addmarket/addmarketvegetable";
 import Vegetablelist from "./Components/Market/vegetablelist/vegetablelist";
 import EditVegetable from "./Components/Market/edit-Vegetable/editVegetable";
+import Priceupdate from "./Components/Market/price-Update/Priceupdate";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/add/vegetable" element={<Addvegetable/>}/>
         <Route path="/list/vegetable" element={<Vegetablelist/>}/>
         <Route path="/edit/vegetable/:id" element={<EditVegetable/>}/>
+        <Route path="/market/vegetable/list" element={<Priceupdate/>}/>
         <Route path="/m" element={<Mtest/>}/>
       </Routes>
     </div>

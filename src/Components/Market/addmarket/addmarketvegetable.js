@@ -69,12 +69,12 @@ export default function Addvegetable() {
 
   return (
     <Sidebar>
-      <div>
-        <div>
+      <div className="vegetable-container">
+        <div className="vegetable-header">
           <h1>Add Vegetable</h1>
           <p>Add vegetable details</p>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="vegetable-form-container">
           <Inputs
             names="name"
             types="text"

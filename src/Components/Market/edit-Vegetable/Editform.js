@@ -23,8 +23,8 @@ const vegetablesSchema = yup.object({
 });
 
 function Editform({ datas }) {
-const navigate=useNavigate();
-  const dispatch=useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   //form controll
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
@@ -34,7 +34,6 @@ const navigate=useNavigate();
         categories: datas.categories,
         image: datas.image,
         price: datas.price,
-
       },
       validationSchema: vegetablesSchema,
       onSubmit: async (vegetable) => {
@@ -48,12 +47,12 @@ const navigate=useNavigate();
       },
     });
   return (
-    <div>
-      <div>
+    <div className="vegetable-container">
+      <div className="vegetable-header">
         <h1>Edit Vegetable</h1>
         <p>Change vegetable details</p>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="vegetable-form-container">
         <Inputs
           names="name"
           types="text"
@@ -94,14 +93,14 @@ const navigate=useNavigate();
           errors={errors.price}
           touched={touched.price}
         />
-       <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Edit Vegetable
-          </Button>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+        >
+          Edit Vegetable
+        </Button>
       </form>
     </div>
   );

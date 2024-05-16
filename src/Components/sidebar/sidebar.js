@@ -34,7 +34,12 @@ function Sidebar({ children }) {
       path: "/admin",
       name: "Admin",
       icon: <FaUserSecret />,
-    }
+    },
+    {
+      path: "/adduser",
+      name: "Add user",
+      icon: <FaRegFileAlt />,
+    },
   ];
   const menuItem1 = [
     {
@@ -50,6 +55,11 @@ function Sidebar({ children }) {
     {
       path: "/list/vegetable",
       name: "List of vegetable",
+      icon: <FaLuggageCart />,
+    },
+    {
+      path: "/market/vegetable/list",
+      name: "vegetable price",
       icon: <FaLuggageCart />,
     },
   ];
