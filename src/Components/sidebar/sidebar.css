@@ -1,6 +1,6 @@
 .sid-container {
   display: flex;
-  /* background-color: aquamarine; */
+  
 }
 main {
   width: 100%;
@@ -64,3 +64,4 @@ main {
   text-align: center;
   color: white;
 }
+

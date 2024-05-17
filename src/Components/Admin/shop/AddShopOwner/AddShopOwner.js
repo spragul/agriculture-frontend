@@ -66,7 +66,7 @@ function AddShopOwner() {
     <Sidebar>
       <div className="adduser-container">
         <div className="adduser-text">
-          <h1>Add Market person of Shop owner</h1>
+          <h1>Add Market person or Shop owner</h1>
         </div>
         <form onSubmit={handleSubmit} className="adduer-form">
           <Inputs
@@ -82,13 +82,12 @@ function AddShopOwner() {
 
           <div>
             <select
-              sx={{ mt: 3, mb: 2 }}
               value={values.role}
               onBlur={handleBlur}
               onChange={handleChange}
               names="role"
               id="role"
-              className="dropdown-select"
+              className="dropdown-select user-seletion"
             >
               <option>Select User type</option>
               <option>owner</option>
