@@ -40,6 +40,11 @@ function Sidebar({ children }) {
       name: "Add user",
       icon: <FaRegFileAlt />,
     },
+    {
+      path:"/shop/list",
+      name:"Shop List",
+      icon: <FaRegEdit />,
+    }
   ];
   const menuItem1 = [
     {
@@ -62,6 +67,16 @@ function Sidebar({ children }) {
       name: "vegetable price",
       icon: <FaLuggageCart />,
     },
+    {
+      path:"/shop/list",
+      name:"Shop List",
+      icon: <FaRegEdit />,
+    },
+    {
+      path:"/shop/add",
+      name:"Add Shop",
+      icon: <FaRegEdit />,
+    }
   ];
   const menuItem2 = [
     {
@@ -78,6 +93,11 @@ function Sidebar({ children }) {
       path: "/shop",
       name: "shop",
       icon: <FaLuggageCart />,
+    },
+    {
+      path:"/shop/list",
+      name:"Shop List",
+      icon: <FaRegEdit />,
     },
   ];
 

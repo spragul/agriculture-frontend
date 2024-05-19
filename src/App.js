@@ -7,7 +7,6 @@ import Reset from "./Pages/ResetPassword/ResetPassword";
 import Home from "./home";
 import AddShopOwner from "./Components/Admin/shop/AddShopOwner/AddShopOwner";
 import UpdateUser from "./Pages/Role/roleUser";
-import Mtest from "./Components/Market/m";
 import Addvegetable from "./Components/Market/addmarket/addmarketvegetable";
 import Vegetablelist from "./Components/Market/vegetablelist/vegetablelist";
 import EditVegetable from "./Components/Market/edit-Vegetable/editVegetable";
@@ -32,9 +31,8 @@ function App() {
         <Route path="/edit/vegetable/:id" element={<EditVegetable />} />
         <Route path="/market/vegetable/list" element={<Priceupdate />} />
         <Route path="/shop/list" element={<ShopList />} />
-        <Route path="/add/shop" element={<Addshop />} />
+        <Route path="/shop/add" element={<Addshop />} />
         <Route path="/edit/shop/:id" element={<EditShop />} />
-        <Route path="/m" element={<Mtest />} />
       </Routes>
     </div>
   );

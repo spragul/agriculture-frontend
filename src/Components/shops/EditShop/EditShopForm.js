@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { backendurl } from "../../../Backendlink";
 import { editsd } from "../../../Redux/shopSlice";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 
 const shopSchema = yup.object({
   shopname: yup
@@ -18,16 +19,18 @@ const shopSchema = yup.object({
     .string()
     .min(20, "Enter full address")
     .required("Enter address with pinCode"),
-  mobile: yup.number
-    .min(10, "Enter mobile number without +91")
-    .max(10, "Enter mobile number without +91")
-    .required("enter mobile number"),
+    mobile: yup
+    .string()
+    .required()
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .min(10, 'Must be exactly 10 digits')
+    .max(10, 'Must be exactly 10 digits')
 });
 
 function EditShopForm({ datas }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const token = sessionStorage.getItem("token");
   //Edit data backend
   async function editshopdata({ shop }) {
     try {

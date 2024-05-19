@@ -5,6 +5,7 @@ import { getAllShop } from "../../data/shop";
 import Sidebar from "../../sidebar/sidebar";
 import EditShopForm from "./EditShopForm";
 import { Loading } from "../../../Pages/Loading";
+import { useParams } from "react-router-dom";
 
 function EditShop() {
   const [editdata, setEditdata] = useState({});

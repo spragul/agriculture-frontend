@@ -1,6 +1,6 @@
 import React from "react";
 import * as yup from "yup";
-import { formik, useFormik } from "formik";
+import { useFormik } from "formik";
 import Inputs from "../../Input/Input";
 import axios from "axios";
 import { backendurl } from "../../../Backendlink";
@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addsd } from "../../../Redux/shopSlice";
 import Sidebar from "../../sidebar/sidebar";
+import { Button } from "@mui/material";
 
 const shopSchema = yup.object({
   shopname: yup
@@ -18,10 +19,12 @@ const shopSchema = yup.object({
     .string()
     .min(20, "Enter full address")
     .required("Enter address with pinCode"),
-  mobile: yup.number
-    .min(10, "Enter mobile number without +91")
-    .max(10, "Enter mobile number without +91")
-    .required("enter mobile number"),
+    mobile: yup
+    .string()
+    .required()
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .min(10, 'Must be exactly 10 digits')
+    .max(10, 'Must be exactly 10 digits')
 });
 
 function Addshop() {
@@ -57,6 +60,7 @@ function Addshop() {
       validationSchema: shopSchema,
       onSubmit: (shop) => {
         console.log(shop);
+        addshopdetails({ shop });
       },
     });
   return (
@@ -97,13 +101,13 @@ function Addshop() {
             touched={touched.mobile}
           />
           <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Add Shop
-            </Button>
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Add Shop
+          </Button>
         </form>
       </div>
     </Sidebar>
