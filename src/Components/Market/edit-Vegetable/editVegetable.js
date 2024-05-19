@@ -5,6 +5,7 @@ import Sidebar from "../../sidebar/sidebar";
 import { useParams } from "react-router-dom";
 import { getvegetale } from "../../data/vegetable";
 import { toast } from "react-toastify";
+import { Loading } from "../../../Pages/Loading";
 
 //vegetable schema
 
@@ -35,7 +36,7 @@ function EditVegetable() {
 
   return (
     <Sidebar>
-        {editdata._id ? <Editform datas={editdata} /> : <div>Loading</div>}
+        {editdata._id ? <Editform datas={editdata} /> : <Loading/>}
     </Sidebar>
   );
 }

@@ -1,13 +1,13 @@
 import React from "react";
 import * as yup from "yup";
-import { formik, useFormik } from "formik";
+import { useFormik } from "formik";
 import Inputs from "../../Input/Input";
 import axios from "axios";
-import { backendurl } from "../../../Backendlink";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { addsd } from "../../../Redux/shopSlice";
-import Sidebar from "../../sidebar/sidebar";
+import { backendurl } from "../../../Backendlink";
+import { editsd } from "../../../Redux/shopSlice";
+import { useNavigate } from "react-router-dom";
 
 const shopSchema = yup.object({
   shopname: yup
@@ -24,46 +24,43 @@ const shopSchema = yup.object({
     .required("enter mobile number"),
 });
 
-function Addshop() {
-  const token = sessionStorage.getItem("token");
+function EditShopForm({ datas }) {
   const dispatch = useDispatch();
-  //add shop details backend
-  async function addshopdetails({ shop }) {
+  const navigate = useNavigate();
+
+  //Edit data backend
+  async function editshopdata({ shop }) {
     try {
-      let response = await axios.post(`${backendurl}/shop/adddata`, shop, {
+      const response = await axios.put(`${backendurl}/shop/editdata`, shop, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log(response);
-      if (response.data.rd == true) {
+      if (response.data.rd === true) {
         toast.success(response.data.message);
-        console.log(response.data.newShop);
-        dispatch(addsd(response.data.newShop));
-      } else {
-        toast.error(response.data.message);
+        dispatch(editsd(response.data.shop));
+        navigate("/shop/list");
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message);
     }
   }
-
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: {
-        shopname: "",
-        Address: "",
-        mobile: 0,
+        shopname: datas.shopname,
+        Address: datas.Address,
+        mobile: datas.mobile,
       },
       validationSchema: shopSchema,
       onSubmit: (shop) => {
         console.log(shop);
+        editshopdata({ shop });
       },
     });
   return (
-    <Sidebar>
-      <div className="shop-container">
-        <div className="shop-textpart">
-          <h1>Add Shop Deatils</h1>
+      <div className="shop-form-container">
+        <div className="shop-form-textpart">
+          <h1>Edit Shop Deatils</h1>
         </div>
         <form onSubmit={handleSubmit} className="shop-form">
           <Inputs
@@ -97,17 +94,16 @@ function Addshop() {
             touched={touched.mobile}
           />
           <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Add Shop
-            </Button>
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Submit
+          </Button>
         </form>
       </div>
-    </Sidebar>
   );
 }
 
-export default Addshop;
+export default EditShopForm;

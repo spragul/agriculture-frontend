@@ -12,23 +12,29 @@ import Addvegetable from "./Components/Market/addmarket/addmarketvegetable";
 import Vegetablelist from "./Components/Market/vegetablelist/vegetablelist";
 import EditVegetable from "./Components/Market/edit-Vegetable/editVegetable";
 import Priceupdate from "./Components/Market/price-Update/Priceupdate";
+import Addshop from "./Components/shops/addshop/Addshop";
+import EditShop from "./Components/shops/EditShop/EditShop";
+import ShopList from "./Components/shops/ListShops/shoplist";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/signup" element={<SignIn/>} />
-        <Route path="/forgotpassword" element={<Forgot/>} />
-        <Route path="/resetpassword/:id/:token" element={<Reset/>} />
-        <Route path="/updateuser" element={<UpdateUser/>}/>
-        <Route path="/adduser" element={<AddShopOwner/>}/>
-        <Route path="/add/vegetable" element={<Addvegetable/>}/>
-        <Route path="/list/vegetable" element={<Vegetablelist/>}/>
-        <Route path="/edit/vegetable/:id" element={<EditVegetable/>}/>
-        <Route path="/market/vegetable/list" element={<Priceupdate/>}/>
-        <Route path="/m" element={<Mtest/>}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignIn />} />
+        <Route path="/forgotpassword" element={<Forgot />} />
+        <Route path="/resetpassword/:id/:token" element={<Reset />} />
+        <Route path="/updateuser" element={<UpdateUser />} />
+        <Route path="/adduser" element={<AddShopOwner />} />
+        <Route path="/add/vegetable" element={<Addvegetable />} />
+        <Route path="/list/vegetable" element={<Vegetablelist />} />
+        <Route path="/edit/vegetable/:id" element={<EditVegetable />} />
+        <Route path="/market/vegetable/list" element={<Priceupdate />} />
+        <Route path="/shop/list" element={<ShopList />} />
+        <Route path="/add/shop" element={<Addshop />} />
+        <Route path="/edit/shop/:id" element={<EditShop />} />
+        <Route path="/m" element={<Mtest />} />
       </Routes>
     </div>
   );

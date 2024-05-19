@@ -59,3 +59,21 @@
   justify-content: baseline;
   flex-direction: row;
 }
+
+/*shop list start*/
+.shoplist-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5px;
+  padding: 2px;
+  height: 100dvb;
+}
+.shoplist-card{
+  width: auto;
+  height: 300px;
+  padding: 5px;
+  margin: 2px;
+}
+
+/*shop list end*/
