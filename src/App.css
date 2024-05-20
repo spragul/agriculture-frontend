@@ -7,6 +7,14 @@
   margin: 5px;
   border-radius: 5px;
 }
+.detailsbutton{
+  background-color: chartreuse;
+  color: black;
+}
+.detailsbutton:hover{
+  background-color: rgb(242, 239, 63);
+  color: black;
+}
 .deletebutton {
   background-color: crimson;
   color: white;
@@ -65,15 +73,38 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #a9a9a942;
   margin: 5px;
   padding: 2px;
-  height: 100dvb;
 }
 .shoplist-card{
   width: auto;
-  height: 300px;
+ text-align: center;
+  height: auto;
   padding: 5px;
   margin: 2px;
+  border: 5px solid rgb(28, 233, 28);
 }
-
+.search-container{
+  width: auto;
+  height: 40px;
+  margin-bottom: 50px;
+}
+.key-values{
+  text-decoration: dashed;
+  font-style: italic;
+  color:#ff00e0;
+}
+.heading-shoplist{
+  text-align: center;
+}
 /*shop list end*/
+/*Add shop start*/
+.shop-container{
+  padding: 10px;
+  margin: 5px;
+}
+.shop-textpart{
+  text-align: center;
+}
+/*Add shop end*/

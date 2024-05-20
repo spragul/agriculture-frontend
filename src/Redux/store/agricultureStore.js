@@ -1,6 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit';
 import vegetableSlice from '../vegetableSlice';
 import shopSlice from '../shopSlice';
+import fertilizerSlice from "../fpSlice"
 
 
 
@@ -8,7 +9,8 @@ import shopSlice from '../shopSlice';
 export const store =configureStore({
     reducer:{
         vegetableapireducer:vegetableSlice,
-        shopapireducer:shopSlice
+        shopapireducer:shopSlice,
+        fertilizerapireducer:fertilizerSlice
         
     }
 })

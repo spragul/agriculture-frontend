@@ -11,7 +11,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "./sidebar.css";
@@ -19,9 +18,9 @@ import "./sidebar.css";
 function Sidebar({ children }) {
   const Name = sessionStorage.getItem("myName");
   const MyRole = sessionStorage.getItem("myRole");
-  const menuItem = [
+  const admins = [
     {
-      path: "/dashboard",
+      path: "/",
       name: "Dashboard",
       icon: <FaBookReader />,
     },
@@ -41,14 +40,14 @@ function Sidebar({ children }) {
       icon: <FaRegFileAlt />,
     },
     {
-      path:"/shop/list",
-      name:"Shop List",
+      path: "/shop/list",
+      name: "Shop List",
       icon: <FaRegEdit />,
-    }
+    },
   ];
-  const menuItem1 = [
+  const market = [
     {
-      path: "/dashboard",
+      path: "/",
       name: "Dashboard",
       icon: <FaBookReader />,
     },
@@ -68,17 +67,12 @@ function Sidebar({ children }) {
       icon: <FaLuggageCart />,
     },
     {
-      path:"/shop/list",
-      name:"Shop List",
-      icon: <FaRegEdit />,
-    },
-    {
-      path:"/shop/add",
-      name:"Add Shop",
+      path: "/shop/list",
+      name: "Shop List",
       icon: <FaRegEdit />,
     }
   ];
-  const menuItem2 = [
+  const shop = [
     {
       path: "/dashboard",
       name: "Dashboard",
@@ -90,15 +84,33 @@ function Sidebar({ children }) {
       icon: <FaShoppingCart />,
     },
     {
-      path: "/shop",
-      name: "shop",
-      icon: <FaLuggageCart />,
-    },
-    {
-      path:"/shop/list",
-      name:"Shop List",
+      path: "/shop/list",
+      name: "Shop List",
       icon: <FaRegEdit />,
     },
+    {
+      path: "/shop/add",
+      name: "Add Shop",
+      icon: <FaRegEdit />,
+    },
+  ];
+
+  const users = [
+    {
+      path: "/",
+      name: "Dashboard",
+      icon: <FaBookReader />,
+    },
+    {
+      path: "/list/vegetable",
+      name: "vegetable list",
+      icon: <FaShoppingCart />,
+    },
+    {
+      path: "/shop/list",
+      name: "Shop List",
+      icon: <FaRegEdit />,
+    }
   ];
 
   return (
@@ -111,7 +123,7 @@ function Sidebar({ children }) {
           <div className="link d-none d-sm-inline">Agriculture App </div>
         </div>
         {MyRole === "admin" ? (
-          menuItem.map((item, index) => (
+          admins.map((item, index) => (
             <NavLink
               to={item.path}
               key={index}
@@ -124,29 +136,49 @@ function Sidebar({ children }) {
           ))
         ) : (
           <>
-            {MyRole === "market"
-              ? menuItem1.map((item, index) => (
-                  <NavLink
-                    to={item.path}
-                    key={index}
-                    className="link text-deactron"
-                    activeclassName="active"
-                  >
-                    <div className="icon">{item.icon}</div>
-                    <div className="ms-3 d-none d-sm-inline">{item.name}</div>
-                  </NavLink>
-                ))
-              : menuItem2.map((item, index) => (
-                  <NavLink
-                    to={item.path}
-                    key={index}
-                    className="link text-deactron"
-                    activeclassName="active"
-                  >
-                    <div className="icon">{item.icon}</div>
-                    <div className="ms-3 d-none d-sm-inline">{item.name}</div>
-                  </NavLink>
-                ))}
+            {MyRole === "market" ? (
+              market.map((item, index) => (
+                <NavLink
+                  to={item.path}
+                  key={index}
+                  className="link text-deactron"
+                  activeclassName="active"
+                >
+                  <div className="icon">{item.icon}</div>
+                  <div className="ms-3 d-none d-sm-inline">{item.name}</div>
+                </NavLink>
+              ))
+            ) : (
+              <>
+                {MyRole === "owner"
+                  ? shop.map((item, index) => (
+                      <NavLink
+                        to={item.path}
+                        key={index}
+                        className="link text-deactron"
+                        activeclassName="active"
+                      >
+                        <div className="icon">{item.icon}</div>
+                        <div className="ms-3 d-none d-sm-inline">
+                          {item.name}
+                        </div>
+                      </NavLink>
+                    ))
+                  : users.map((item, index) => (
+                      <NavLink
+                        to={item.path}
+                        key={index}
+                        className="link text-deactron"
+                        activeclassName="active"
+                      >
+                        <div className="icon">{item.icon}</div>
+                        <div className="ms-3 d-none d-sm-inline">
+                          {item.name}
+                        </div>
+                      </NavLink>
+                    ))}
+              </>
+            )}
           </>
         )}
       </div>
@@ -221,20 +253,6 @@ export function NavScrollExample({ title }) {
                 ""
               )}
             </Nav>
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button
-                class="btn btn-outline-warning me-2"
-                onClick={() => filtered()}
-              >
-                Search
-              </Button>
-            </Form>
             <button
               class="btn btn-outline-warning me-2"
               type="button"

@@ -14,6 +14,8 @@ import Priceupdate from "./Components/Market/price-Update/Priceupdate";
 import Addshop from "./Components/shops/addshop/Addshop";
 import EditShop from "./Components/shops/EditShop/EditShop";
 import ShopList from "./Components/shops/ListShops/shoplist";
+import ShopDetails from "./Components/shops/Shop Details/ShopDetails";
+import Addfertilizer from "./Components/shops/fettilizer/Addfertilizer";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
         <Route path="/shop/list" element={<ShopList />} />
         <Route path="/shop/add" element={<Addshop />} />
         <Route path="/edit/shop/:id" element={<EditShop />} />
+        <Route path="/shop/details/:id" element={<ShopDetails />} />
+        <Route path="/fertilizer/add/:id" element={<Addfertilizer />} />
       </Routes>
     </div>
   );

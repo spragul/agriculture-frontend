@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Sidebar from "../../sidebar/sidebar";
-import { Button } from "@mui/material";
 import axios from "axios";
 import { backendurl } from "../../../Backendlink";
 import { deletesd } from "../../../Redux/shopSlice";
@@ -16,6 +15,7 @@ function ShopList() {
   const myRole = sessionStorage.getItem("myRole");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  let isloading = useSelector((state) => state.shopapireducer.isLoading);
   let datas = useSelector((state) => state.shopapireducer.value);
   console.log(datas);
   //getdata
@@ -48,7 +48,7 @@ function ShopList() {
 
   useEffect(() => {
     if (token) {
-      if (datas.length > 0) {
+      if (isloading) {
       } else {
         getdata();
       }
@@ -56,67 +56,77 @@ function ShopList() {
   }, []);
   return (
     <Sidebar>
-      <div className="shoplist-container">
-      <div className="search-container">
-          <input
-            placeholder="Search vegetables"
-            className="search-bar"
-            onChange={(e) => setSearch(e.target.value)}
-          ></input>
-        </div>
-        {datas.length > 0 ? (
-          datas
-            .filter((item) => {
-              return search.toLowerCase() === ""
-                ? item
-                : item.name.toLowerCase().includes(search.toLowerCase()) ||
-                    item.categories
-                      .toLowerCase()
-                      .includes(search.toLowerCase());
-            })
-            .map((item, index) => (
-              <div key={index} className="shoplist-card">
-                <div>
-                  <h3>{item.shopname}</h3>
-                  <p>{item.mobile}</p>
-                  <p>{item.Addresss}</p>
-                </div>
+      <div>
+        <div className="shoplist-container">
+          <div className="search-container">
+            <input
+              placeholder="Search Shop Name"
+              className="search-bar"
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+          <div className="heading-shoplist">
+            <h3>Fertilizer Pesticide Shop List</h3>
+          </div>
+          {isloading ? (
+            datas
+              .filter((item) => {
+                return search.toLowerCase() === ""
+                  ? item
+                  : item.shopname.toLowerCase().includes(search.toLowerCase());
+              })
+              .map((item, index) => (
+                <div key={index} className="shoplist-card">
+                  <div>
+                    <h3>
+                      <span className="key-values">Shop Name</span>:
+                      {item.shopname}
+                    </h3>
+                    <p>
+                      <span className="key-values">Branch</span>:{item.branch}
+                    </p>
+                    <p>
+                      <span className="key-values">Mobile</span>:{item.mobile}
+                    </p>
+                    <p>
+                      <span className="key-values">Address</span>:{item.Address}
+                    </p>
+                  </div>
 
-                <div className="d-grid gap-3 d-md-block">
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
-                  >
-                    Shop Details
-                  </Button>
-                  {myRole == "owner" ? (
-                    <>
-                      <button
-                        className="mybutton deletebutton"
-                        onClick={() => deleteShopDetails(item._id)}
-                      >
-                        Delete Shop
-                      </button>
-                      <button
-                        className="mybutton Editbutton"
-                        onClick={() => {
-                          navigate(`/edit/shop/${item._id}`);
-                        }}
-                      >
-                        Edit Shop
-                      </button>
-                    </>
-                  ) : (
-                    ""
-                  )}
+                  <div className="d-grid gap-3 d-md-block">
+                    <button
+                      className="mybutton detailsbutton"
+                      onClick={() => navigate(`/shop/details/${item._id}`)}
+                    >
+                      Shop Details
+                    </button>
+                    {myRole == "owner" ? (
+                      <>
+                        <button
+                          className="mybutton deletebutton"
+                          onClick={() => deleteShopDetails(item._id)}
+                        >
+                          Delete Shop
+                        </button>
+                        <button
+                          className="mybutton Editbutton"
+                          onClick={() => {
+                            navigate(`/edit/shop/${item._id}`);
+                          }}
+                        >
+                          Edit Shop
+                        </button>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))
-        ) : (
-          <Loading />
-        )}
+              ))
+          ) : (
+            <Loading />
+          )}
+        </div>
       </div>
     </Sidebar>
   );

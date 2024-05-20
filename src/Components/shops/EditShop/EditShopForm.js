@@ -24,7 +24,10 @@ const shopSchema = yup.object({
     .required()
     .matches(/^[0-9]+$/, "Must be only digits")
     .min(10, 'Must be exactly 10 digits')
-    .max(10, 'Must be exactly 10 digits')
+    .max(10, 'Must be exactly 10 digits'),
+    branch:yup
+    .string()
+    .required("Enter Branch location")
 });
 
 function EditShopForm({ datas }) {
@@ -40,19 +43,22 @@ function EditShopForm({ datas }) {
       console.log(response);
       if (response.data.rd === true) {
         toast.success(response.data.message);
-        dispatch(editsd(response.data.shop));
+        dispatch(editsd(response.data.shops));
         navigate("/shop/list");
       }
     } catch (error) {
+      toast.error(error.response.data.message);
       console.log(error);
     }
   }
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: {
+        _id:datas._id,
         shopname: datas.shopname,
         Address: datas.Address,
         mobile: datas.mobile,
+        branch:datas.branch
       },
       validationSchema: shopSchema,
       onSubmit: (shop) => {
@@ -62,7 +68,7 @@ function EditShopForm({ datas }) {
     });
   return (
       <div className="shop-form-container">
-        <div className="shop-form-textpart">
+        <div className="shop-textpart">
           <h1>Edit Shop Deatils</h1>
         </div>
         <form onSubmit={handleSubmit} className="shop-form">
@@ -85,6 +91,16 @@ function EditShopForm({ datas }) {
             handleChange={handleChange}
             errors={errors.Address}
             touched={touched.Address}
+          />
+           <Inputs
+            names="branch"
+            types="text"
+            lables="Enter Branch location"
+            values={values.branch}
+            handleBlur={handleBlur}
+            handleChange={handleChange}
+            errors={errors.branch}
+            touched={touched.branch}
           />
           <Inputs
             names="mobile"

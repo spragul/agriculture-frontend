@@ -2,6 +2,7 @@ import axios from "axios";
 import { backendurl } from "../../Backendlink";
 import { fetchshopData } from "../../Redux/shopSlice";
 
+
 //getdata vegetable details
 export const getAllShop = async (dispatch,token) => {
     try {
@@ -10,7 +11,7 @@ export const getAllShop = async (dispatch,token) => {
       });
       console.log(response)
       if(response.data.rd==true){
-         dispatch(fetchshopData(response.data.vegetable))
+         dispatch(fetchshopData(response.data.shop))
        return {responses:true,response}
       }
     } catch (error) {

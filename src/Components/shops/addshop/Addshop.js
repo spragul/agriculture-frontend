@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { addsd } from "../../../Redux/shopSlice";
 import Sidebar from "../../sidebar/sidebar";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const shopSchema = yup.object({
   shopname: yup
@@ -24,12 +25,16 @@ const shopSchema = yup.object({
     .required()
     .matches(/^[0-9]+$/, "Must be only digits")
     .min(10, 'Must be exactly 10 digits')
-    .max(10, 'Must be exactly 10 digits')
+    .max(10, 'Must be exactly 10 digits'),
+    branch:yup
+    .string()
+    .required("Enter Branch location")
 });
 
 function Addshop() {
   const token = sessionStorage.getItem("token");
   const dispatch = useDispatch();
+  const navigate =useNavigate();
   //add shop details backend
   async function addshopdetails({ shop }) {
     try {
@@ -41,6 +46,7 @@ function Addshop() {
         toast.success(response.data.message);
         console.log(response.data.newShop);
         dispatch(addsd(response.data.newShop));
+        navigate("/shop/list")
       } else {
         toast.error(response.data.message);
       }
@@ -89,6 +95,16 @@ function Addshop() {
             handleChange={handleChange}
             errors={errors.Address}
             touched={touched.Address}
+          />
+          <Inputs
+            names="branch"
+            types="text"
+            lables="Enter Branch location"
+            values={values.branch}
+            handleBlur={handleBlur}
+            handleChange={handleChange}
+            errors={errors.branch}
+            touched={touched.branch}
           />
           <Inputs
             names="mobile"
