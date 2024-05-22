@@ -22,6 +22,10 @@ export default function Home(){
         <Link to={"/add/vegetable"}>add vegetable</Link>
         <hr/>
         <Link to={"/list/vegetable"}>list vegetable</Link>
+        <hr/>
+        <Link to={"/report/list"}>Soil report</Link>
+        <hr/>
+        <Link to={"/report/add"}>Soil add</Link>
         </div>
         </Sidebar>
     )

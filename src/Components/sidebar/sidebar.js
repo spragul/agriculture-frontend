@@ -6,7 +6,16 @@ import {
   FaVolleyballBall,
   FaShoppingCart,
   FaLuggageCart,
+  FaCarrot
 } from "react-icons/fa";
+import { MdAgriculture } from "react-icons/md";
+import { GiFarmer } from "react-icons/gi";
+import { FaRegIdCard } from "react-icons/fa6";
+import HomeIcon from "@mui/icons-material/Home";
+import GrainIcon from "@mui/icons-material/Grain";
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import StoreIcon from '@mui/icons-material/Store';
+import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import { NavLink, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
@@ -27,7 +36,7 @@ function Sidebar({ children }) {
     {
       path: "/list/vegetable",
       name: "Vegetable list",
-      icon: <FaRegEdit />,
+      icon: <FaCarrot />,
     },
     {
       path: "/admin",
@@ -37,12 +46,32 @@ function Sidebar({ children }) {
     {
       path: "/adduser",
       name: "Add user",
-      icon: <FaRegFileAlt />,
+      icon: <PersonAddAltIcon />,
     },
     {
       path: "/shop/list",
       name: "Shop List",
-      icon: <FaRegEdit />,
+      icon: <StoreIcon />,
+    },
+    {
+      path: "/report/add",
+      name: "Add Report",
+      icon: <FaBookReader />,
+    },
+    {
+      path: "/report/list",
+      name: "Report list",
+      icon: <GrainIcon />,
+    },
+    {
+      path: "/scheme/list",
+      name: "Schemes",
+      icon: <MdAgriculture />,
+    },
+    {
+      path: "/scheme/add",
+      name: "Add Scheme",
+      icon: <FaRegIdCard />,
     },
   ];
   const market = [
@@ -59,7 +88,7 @@ function Sidebar({ children }) {
     {
       path: "/list/vegetable",
       name: "List of vegetable",
-      icon: <FaLuggageCart />,
+      icon: <FaCarrot />,
     },
     {
       path: "/market/vegetable/list",
@@ -69,7 +98,17 @@ function Sidebar({ children }) {
     {
       path: "/shop/list",
       name: "Shop List",
-      icon: <FaRegEdit />,
+      icon: <StoreIcon />,
+    },
+    {
+      path: "/report/list",
+      name: "Report list",
+      icon: <GrainIcon />,
+    },
+    {
+      path: "/scheme/list",
+      name: "Schemes",
+      icon: <MdAgriculture />,
     }
   ];
   const shop = [
@@ -81,18 +120,28 @@ function Sidebar({ children }) {
     {
       path: "/list/vegetable",
       name: "vegetable list",
-      icon: <FaShoppingCart />,
+      icon: <FaCarrot />,
     },
     {
       path: "/shop/list",
       name: "Shop List",
-      icon: <FaRegEdit />,
+      icon: <StoreIcon />,
     },
     {
       path: "/shop/add",
       name: "Add Shop",
-      icon: <FaRegEdit />,
+      icon: <AddBusinessIcon />,
     },
+    {
+      path: "/report/list",
+      name: "Report list",
+      icon: <GrainIcon />,
+    },
+    {
+      path: "/scheme/list",
+      name: "Schemes",
+      icon: <MdAgriculture />,
+    }
   ];
 
   const users = [
@@ -104,12 +153,22 @@ function Sidebar({ children }) {
     {
       path: "/list/vegetable",
       name: "vegetable list",
-      icon: <FaShoppingCart />,
+      icon: <FaCarrot />,
     },
     {
       path: "/shop/list",
       name: "Shop List",
-      icon: <FaRegEdit />,
+      icon: <StoreIcon/>,
+    },
+    {
+      path: "/report/list",
+      name: "Report list",
+      icon: <GrainIcon />,
+    },
+    {
+      path: "/scheme/list",
+      name: "Schemes",
+      icon: <MdAgriculture />,
     }
   ];
 
@@ -236,6 +295,9 @@ export function NavScrollExample({ title }) {
                 type="button"
                 onClick={() => navigate("/dashboard")}
               >
+                <span>
+                  <HomeIcon />
+                </span>
                 Home
               </button>
               {MyRole === "user" ? (

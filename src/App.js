@@ -16,6 +16,14 @@ import EditShop from "./Components/shops/EditShop/EditShop";
 import ShopList from "./Components/shops/ListShops/shoplist";
 import ShopDetails from "./Components/shops/Shop Details/ShopDetails";
 import Addfertilizer from "./Components/shops/fettilizer/Addfertilizer";
+import EditFertilizerShop from "./Components/shops/fettilizer/Editfertilizer";
+import Addreport from "./Components/Admin/Report/Addreport";
+import ReportList from "./Components/Admin/Report/ReportList";
+import EditReport from "./Components/Admin/Report/EditReport";
+import GovernmentSchemeAdd from "./Components/Admin/Government/GovernmentSchemeAdd";
+import GovernmentEditScheme from "./Components/Admin/Government/GovernmentEditScheme";
+import GovernmentSchemeList from "./Components/Admin/Government/GovernmentSchemeList";
+
 
 function App() {
   return (
@@ -37,6 +45,13 @@ function App() {
         <Route path="/edit/shop/:id" element={<EditShop />} />
         <Route path="/shop/details/:id" element={<ShopDetails />} />
         <Route path="/fertilizer/add/:id" element={<Addfertilizer />} />
+        <Route path="/fertilizer/edit/:id" element={<EditFertilizerShop />} />
+        <Route path="/report/add" element={<Addreport />} />
+        <Route path="/report/list" element={<ReportList />} />
+        <Route path="/report/edit/:id" element={<EditReport />} />
+        <Route path="/scheme/add" element={<GovernmentSchemeAdd />} />
+        <Route path="/scheme/edit/:id" element={<GovernmentEditScheme />} />
+        <Route path="/scheme/list" element={<GovernmentSchemeList />} />
       </Routes>
     </div>
   );

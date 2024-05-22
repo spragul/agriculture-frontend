@@ -61,6 +61,7 @@ function Addshop() {
       initialValues: {
         shopname: "",
         Address: "",
+        branch:"",
         mobile: 0,
       },
       validationSchema: shopSchema,

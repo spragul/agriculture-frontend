@@ -108,3 +108,74 @@
   text-align: center;
 }
 /*Add shop end*/
+/*shop details start*/
+.card-header {
+  text-align: right;
+
+}
+/*shop details end*/
+
+/*add soil start*/
+.Soil-add-container{
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 5px;
+  margin: 2px;
+}
+.Soil-add-textpart{
+  text-align: center;
+
+}
+.soil-add-form{
+  text-align: center;
+
+}
+/*add soil end*/
+.Report-container{
+  height: 100dvh;
+}
+
+/* scheme list start*/
+.gs-list-container{
+
+}
+.heading-shoplist{
+
+}
+.gs-list-card{
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  border: 3px solid greenyellow;
+
+}
+.gs-image-container{
+width: 30%;
+height: 350px;
+padding: 5px;
+}
+.gs-text-area{
+  display: flex;
+  flex-direction: column;
+
+}
+/* scheme list end*/
+
+/*add scheme start*/
+.government-container{
+  width: auto;
+  height: 100dvh;
+  padding: 10px;
+  background-color: #a9a9a942;
+}
+.government-text-container{
+  text-align: center;
+}
+.government-form-container{
+  text-align: center;
+}
+/*add scheme end*/
