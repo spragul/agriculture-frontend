@@ -177,7 +177,7 @@ function Sidebar({ children }) {
       <div className="sidebar">
         <div className="top_section">
           <div className="icon">
-            <FaVolleyballBall />
+            <GiFarmer />
           </div>
           <div className="link d-none d-sm-inline">Agriculture App </div>
         </div>
