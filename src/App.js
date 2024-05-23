@@ -23,7 +23,7 @@ import EditReport from "./Components/Admin/Report/EditReport";
 import GovernmentSchemeAdd from "./Components/Admin/Government/GovernmentSchemeAdd";
 import GovernmentEditScheme from "./Components/Admin/Government/GovernmentEditScheme";
 import GovernmentSchemeList from "./Components/Admin/Government/GovernmentSchemeList";
-
+import GovernmentDetails from "./Components/Admin/Government/governmentDetails";
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignIn />} />
-        <Route path="/forgotpassword" element={<Forgot />} />
+        {/* <Route path="/forgotpassword" element={<Forgot />} />
         <Route path="/resetpassword/:id/:token" element={<Reset />} />
         <Route path="/updateuser" element={<UpdateUser />} />
         <Route path="/adduser" element={<AddShopOwner />} />
@@ -48,10 +48,11 @@ function App() {
         <Route path="/fertilizer/edit/:id" element={<EditFertilizerShop />} />
         <Route path="/report/add" element={<Addreport />} />
         <Route path="/report/list" element={<ReportList />} />
-        <Route path="/report/edit/:id" element={<EditReport />} />
+        <Route path="/report/edit/:id" element={<EditReport />} /> */}
         <Route path="/scheme/add" element={<GovernmentSchemeAdd />} />
         <Route path="/scheme/edit/:id" element={<GovernmentEditScheme />} />
         <Route path="/scheme/list" element={<GovernmentSchemeList />} />
+        <Route path="/scheme/details/:id" element={<GovernmentDetails />} />
       </Routes>
     </div>
   );

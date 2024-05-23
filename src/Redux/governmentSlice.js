@@ -27,6 +27,14 @@ const governmentSlice = createSlice({
       let newlist = state.value.filter((val) => val._id !== id);
       state.value = newlist;
     },
+    addgsrv:(state,action)=>{
+      state.isLoading = true;
+      let id = action.payload._id;
+      let newlist = state.value.filter((val) => val._id == id);
+      let add=newlist.userreview.push(action.payload);
+      let removeproduct = state.value.filter((val) => val._id !== id);
+      state.value = [...removeproduct, add];
+    }
   }
 });
 

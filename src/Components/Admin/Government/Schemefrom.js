@@ -59,7 +59,7 @@ function Schemefrom({datas}) {
         image:datas.image,
         details: datas.details,
         discription: datas.discription,
-        startingdate: datas.startingdate,
+        startingdate: datas.startingdate.split("T")[0],
       },
       validationSchema: governmentSchema,
       onSubmit: (government) => {

@@ -139,14 +139,15 @@
 
 /* scheme list start*/
 .gs-list-container{
-
+padding: 5px;
+margin: 2px;
 }
 .heading-shoplist{
-
+padding: 2px;
 }
 .gs-list-card{
-  width: 100%;
-  height: 400px;
+  width: auto;
+  height: 320px;
   display: flex;
   flex-direction: row;
   padding: 5px;
@@ -154,20 +155,52 @@
 
 }
 .gs-image-container{
-width: 30%;
-height: 350px;
+width: 400px;
+height: 320px;
 padding: 5px;
 }
+.gs-image-container img{
+  width: 400px;
+  height: 300px;
+}
 .gs-text-area{
+  margin-left: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+
+}
+
+@media screen and (max-width:600px) {
+  .gs-list-card{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    border: 3px solid greenyellow;
+  
+  }
+  .gs-text-area{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+ }
+ .gs-image-container{
+  width: 320px;
+  height: 320px;
+  padding: 5px;
+  }
+  .gs-image-container img{
+    width: 320px;
+    height: 300px;
+  }
 
 }
 /* scheme list end*/
 
 /*add scheme start*/
 .government-container{
-  width: auto;
   height: 100dvh;
   padding: 10px;
   background-color: #a9a9a942;
@@ -179,3 +212,25 @@ padding: 5px;
   text-align: center;
 }
 /*add scheme end*/
+/* scheme details page start*/
+.details-span{
+  font-style: italic;
+  color: #ff00e0;
+  font-weight: bold;
+}
+.user-reviews{
+  text-align: center;
+}
+.add-user-review{
+  text-align: center;
+  margin-bottom: 10px;
+}
+.add-comments{
+  margin-left: 5px;
+}
+.comments-input{
+  border-radius: 5px;
+  width: 300px;
+  height: 40px;
+}
+/* scheme details page start*/

@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../../sidebar/sidebar";
 import { Loading } from "../../../Pages/Loading";
 import { useNavigate } from "react-router-dom";
-import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import { backendurl } from "../../../Backendlink";
-import axios from "axios"
+import axios from "axios";
 import { deletegs } from "../../../Redux/governmentSlice";
 import { getgovernmentdata } from "../../data/scheme";
 import { toast } from "react-toastify";
@@ -19,19 +19,21 @@ function GovernmentSchemeList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const allscheme = useSelector((state) => state.governmentapireducer.value);
-  const isloading = useSelector((state) => state.governmentapireducer.isLoading);
-    //getdata
-    async function getdata() {
-      let schemedata = await getgovernmentdata(dispatch,token);
-      if (schemedata.responses == true) {
-        toast.success(schemedata.response.data.message);
-      } else {
-        console.log(schemedata.error.response.data.message);
-        toast.error(schemedata.error.response.data.message);
-      }
+  const isloading = useSelector(
+    (state) => state.governmentapireducer.isLoading
+  );
+  //getdata
+  async function getdata() {
+    let schemedata = await getgovernmentdata(dispatch, token);
+    if (schemedata.responses == true) {
+      toast.success(schemedata.response.data.message);
+    } else {
+      console.log(schemedata.error.response.data.message);
+      toast.error(schemedata.error.response.data.message);
     }
+  }
 
-  async function deleteschemeDetails(ids){
+  async function deleteschemeDetails(ids) {
     try {
       const response = await axios.delete(
         `${backendurl}/government/deletegs/${ids}`,
@@ -46,16 +48,15 @@ function GovernmentSchemeList() {
       console.log(error);
       toast.error(error.response.data.message);
     }
-
   }
-  
-  useEffect(()=>{
-   if(token){
-      if(allscheme.length==0){
+
+  useEffect(() => {
+    if (token) {
+      if (allscheme.length == 0) {
         getdata();
       }
-   }
-  },[])
+    }
+  }, []);
 
   return (
     <Sidebar>
@@ -83,64 +84,52 @@ function GovernmentSchemeList() {
               .map((item, index) => (
                 <div key={index} className="gs-list-card">
                   <div className="gs-image-container">
-                    <div><img src={item.image} title={item.schemename} alt={item.schemename}/></div>
-                    <div className="gs-text-area">
-                      <h3>{item.schemename}</h3>
-                      <p>{item.discription}</p>
-                      <p>{item.startingdate}</p>
-                      <div className="d-grid gap-3 d-md-block">
-                        {myRole === "admin" ? (
-                          <Button variant="outlined"  color="success"  onClick={() => {
-                            deleteschemeDetails(item._id);
-                          }} startIcon={<DeleteIcon />}>
-                          Delete
-                        </Button>
-                        ) : (
-                          ""
-                        )}
-                        {myRole === "admin" ? (
-                          <Button variant="outlined"  onClick={() => {
-                                navigate(`/scheme/edit/${item._id}`)
-                              }}
-                              color="success"
-                          startIcon={<EditIcon />}>
-                          Edit
-                        </Button>
-                        ) : (
-                          ""
-                        )}
-                      </div>
-                    </div>
+                    <img
+                      src={item.image}
+                      title={item.schemename}
+                      alt={item.schemename}
+                    />
                   </div>
-
-                  <div className="d-grid gap-3 d-md-block">
-                    <button
-                      className="mybutton detailsbutton"
-                    
-                    >
+                  <div className="gs-text-area">
+                    <h3>{item.schemename}</h3>
+                    <p>{item.discription}</p>
+                    <p>{item.startingdate}</p>
+                    <div className="d-grid gap-3 d-md-block">
+                    <button className="mybutton detailsbutton"
+                     onClick={()=>navigate(`/scheme/details/${item._id}`)}>
                       Shop Details
                     </button>
-                    {myRole == "owner" ? (
-                      <>
-                        <button
-                          className="mybutton deletebutton"
+                      {myRole === "admin" ? (
+                        <Button
+                          variant="outlined"
+                          color="success"
+                          onClick={() => {
+                            deleteschemeDetails(item._id);
+                          }}
+                          startIcon={<DeleteIcon />}
                         >
-                          Delete Shop
-                        </button>
-                        <button
-                          className="mybutton Editbutton"
+                          Delete
+                        </Button>
+                      ) : (
+                        ""
+                      )}
+                      {myRole === "admin" ? (
+                        <Button
+                          variant="outlined"
                           onClick={() => {
                             navigate(`/scheme/edit/${item._id}`);
                           }}
+                          color="success"
+                          startIcon={<EditIcon />}
                         >
-                          Edit Scheme
-                        </button>
-                      </>
-                    ) : (
-                      ""
-                    )}
+                          Edit
+                        </Button>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </div>
-                </div>
+                  </div>
               ))
           ) : (
             <Loading />
