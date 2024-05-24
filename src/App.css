@@ -338,3 +338,19 @@ padding: 5px;
 .role-form{
   text-align: center;
 }
+.details-span-container{
+display: flex;
+justify-content: center;
+flex-direction: column;
+background-color: #f1a0e8;
+}
+.details-h{
+  text-align: center;
+}
+.details-span-p-container{
+  display: flex;
+justify-content: center;
+flex-direction: column;
+height: 100vb;
+background-color: #f1a0e8;
+}

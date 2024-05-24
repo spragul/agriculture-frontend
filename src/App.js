@@ -25,6 +25,7 @@ import GovernmentDetails from "./Components/Admin/Government/governmentDetails";
 import Userlist from "./Components/Admin/admin";
 import AddShopOwner from "./Components/Admin/shop/AddShopOwner/AddShopOwner";
 import Firstpage from "./Pages/Firstpage";
+import DetailsReport from "./Components/Admin/Report/DetailsReport";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
         <Route path="/scheme/edit/:id" element={<GovernmentEditScheme />} />
         <Route path="/scheme/details/:id" element={<GovernmentDetails />} />
         <Route path="/admin" element={<Userlist />} />
+        <Route path="/report/detail/:id" element={<DetailsReport />} />
       </Routes>
     </div>
   );

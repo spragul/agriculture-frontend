@@ -24,7 +24,7 @@ function GovernmentDetails() {
   const isloading = useSelector(
     (state) => state.governmentapireducer.isLoading
   );
-  console.log(detail.userreview);
+  
 
   //getdata
   async function getdata() {
@@ -88,10 +88,10 @@ function GovernmentDetails() {
 
   return (
     <Sidebar>
-      <div>
+      <div className="details-span-container">
         <div>
           {detail ? (
-            <div>
+            <div className="details-h">
               <h3>
                 <span className="details-span">Scheme Name:</span>
                 {detail.schemename}
