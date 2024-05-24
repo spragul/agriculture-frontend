@@ -53,7 +53,7 @@ function GovernmentSchemeList() {
 
   useEffect(() => {
     if (token) {
-      if (allscheme.length == 0) {
+      if (allscheme.length == 0 || allscheme.length == 1) {
         getdata();
       }
     }

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Inputs from "../../Components/Input/Input";
 import { Button } from "@mui/material";
 import { backendurl } from "../../Backendlink";
+import Sidebar from "../../Components/sidebar/sidebar";
 
 const userSchema = yup.object({
   name: yup
@@ -30,7 +31,7 @@ export default function UpdateUser() {
     try {
       console.log(userdata);
       let response = await axios.put(`${backendurl}/user/adduser`, userdata);
-      console.log(response)
+      console.log(response);
       if (response.data.rd == true) {
         toast.success(response.data.message);
         navigate("/");
@@ -49,7 +50,7 @@ export default function UpdateUser() {
         name: "",
         email: "",
         mobile: "",
-        land: 0
+        land: 0,
       },
       validationSchema: userSchema,
       onSubmit: (userdata) => {
@@ -58,63 +59,65 @@ export default function UpdateUser() {
       },
     });
   return (
-    <div className="role-container">
-      <div className="role-card">
-        <div className="role-text-area">
-          <h1>welcome</h1>
-          <p>Update User</p>
+    <Sidebar>
+      <div className="role-container">
+        <div className="role-card">
+          <div className="role-text-area">
+            <h1>welcome</h1>
+            <p>Update User</p>
+          </div>
+          <form onSubmit={handleSubmit} className="role-form">
+            <Inputs
+              names="name"
+              types="text"
+              lables="Enter Your Name"
+              values={values.name}
+              handleBlur={handleBlur}
+              handleChange={handleChange}
+              errors={errors.name}
+              touched={touched.name}
+            />
+            <Inputs
+              names="email"
+              types="email"
+              lables="Enter Your email"
+              values={values.email}
+              handleBlur={handleBlur}
+              handleChange={handleChange}
+              errors={errors.email}
+              touched={touched.email}
+            />
+            <Inputs
+              names="mobile"
+              types="number"
+              lables="Mobile Number"
+              values={values.mobile}
+              handleBlur={handleBlur}
+              handleChange={handleChange}
+              errors={errors.mobile}
+              touched={touched.mobile}
+            />
+            <Inputs
+              names="land"
+              types="number"
+              lables="Enter land size in cents "
+              values={values.land}
+              handleBlur={handleBlur}
+              handleChange={handleChange}
+              errors={errors.land}
+              touched={touched.land}
+            />
+            <Button
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              type="submit"
+            >
+              submit
+            </Button>
+          </form>
         </div>
-        <form onSubmit={handleSubmit}>
-          <Inputs
-            names="name"
-            types="text"
-            lables="Enter Your Name"
-            values={values.name}
-            handleBlur={handleBlur}
-            handleChange={handleChange}
-            errors={errors.name}
-            touched={touched.name}
-          />
-          <Inputs
-            names="email"
-            types="email"
-            lables="Enter Your email"
-            values={values.email}
-            handleBlur={handleBlur}
-            handleChange={handleChange}
-            errors={errors.email}
-            touched={touched.email}
-          />
-          <Inputs
-            names="mobile"
-            types="number"
-            lables="Mobile Number"
-            values={values.mobile}
-            handleBlur={handleBlur}
-            handleChange={handleChange}
-            errors={errors.mobile}
-            touched={touched.mobile}
-          />
-          <Inputs
-            names="land"
-            types="number"
-            lables="Enter land size in cents "
-            values={values.land}
-            handleBlur={handleBlur}
-            handleChange={handleChange}
-            errors={errors.land}
-            touched={touched.land}
-          />
-          <Button
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2 }}
-          type="submit"
-        >
-          submit
-        </Button>
-        </form>
       </div>
-    </div>
+    </Sidebar>
   );
 }

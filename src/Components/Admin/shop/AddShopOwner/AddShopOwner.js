@@ -7,8 +7,8 @@ import { backendurl } from "../../../../Backendlink";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../../../sidebar/sidebar";
 import './addshop.css'
+import Sidebar from "../../../sidebar/sidebar";
 
 //adduser schema
 const adduserSchema = yup.object({

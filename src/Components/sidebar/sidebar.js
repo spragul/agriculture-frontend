@@ -38,7 +38,7 @@ function Sidebar({ children }) {
   const MyRole = sessionStorage.getItem("myRole");
   const admins = [
     {
-      path: "/",
+      path: "/dashboard",
       name: "Dashboard",
       icon: <FaBookReader />,
     },
@@ -73,19 +73,14 @@ function Sidebar({ children }) {
       icon: <GrainIcon />,
     },
     {
-      path: "/scheme/list",
-      name: "Schemes",
-      icon: <MdAgriculture />,
-    },
-    {
       path: "/scheme/add",
       name: "Add Scheme",
       icon: <FaRegIdCard />,
-    },
+    }
   ];
   const market = [
     {
-      path: "/",
+      path: "/dashboard",
       name: "Dashboard",
       icon: <FaBookReader />,
     },
@@ -113,12 +108,7 @@ function Sidebar({ children }) {
       path: "/report/list",
       name: "Report list",
       icon: <GrainIcon />,
-    },
-    {
-      path: "/scheme/list",
-      name: "Schemes",
-      icon: <MdAgriculture />,
-    },
+    }
   ];
   const shop = [
     {
@@ -145,17 +135,12 @@ function Sidebar({ children }) {
       path: "/report/list",
       name: "Report list",
       icon: <GrainIcon />,
-    },
-    {
-      path: "/scheme/list",
-      name: "Schemes",
-      icon: <MdAgriculture />,
-    },
+    }
   ];
 
   const users = [
     {
-      path: "/",
+      path: "/dashboard",
       name: "Dashboard",
       icon: <FaBookReader />,
     },
@@ -173,12 +158,7 @@ function Sidebar({ children }) {
       path: "/report/list",
       name: "Report list",
       icon: <GrainIcon />,
-    },
-    {
-      path: "/scheme/list",
-      name: "Schemes",
-      icon: <MdAgriculture />,
-    },
+    }
   ];
 
   return (
@@ -284,14 +264,7 @@ export function NavScrollExample({ title }) {
    dispatch(resetvegdata([]));
     navigate("/login");
   }
-  function adminlogin() {
-    if (MyRole === "admin") {
-      alert("You are Admin");
-    } else {
-      sessionStorage.clear();
-      navigate("/login");
-    }
-  }
+ 
 
   return (
     <div>

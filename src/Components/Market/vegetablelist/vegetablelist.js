@@ -49,7 +49,7 @@ function Vegetablelist() {
 
   useEffect(() => {
     if (token) {
-      if (datas.length == 0) {
+      if (datas.length == 0 || datas.length == 1) {
         getdata();
       }
     } else {

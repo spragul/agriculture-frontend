@@ -4,7 +4,6 @@ import Login from "./Pages/Login/login";
 import SignIn from "./Pages/Signup/signup";
 import { Forgot } from "./Pages/ForgotPassword/ForgotPassword";
 import Reset from "./Pages/ResetPassword/ResetPassword";
-import AddShopOwner from "./Components/Admin/shop/AddShopOwner/AddShopOwner";
 import UpdateUser from "./Pages/Role/roleUser";
 import Addvegetable from "./Components/Market/addmarket/addmarketvegetable";
 import Vegetablelist from "./Components/Market/vegetablelist/vegetablelist";
@@ -24,12 +23,15 @@ import GovernmentEditScheme from "./Components/Admin/Government/GovernmentEditSc
 import GovernmentSchemeList from "./Components/Admin/Government/GovernmentSchemeList";
 import GovernmentDetails from "./Components/Admin/Government/governmentDetails";
 import Userlist from "./Components/Admin/admin";
+import AddShopOwner from "./Components/Admin/shop/AddShopOwner/AddShopOwner";
+import Firstpage from "./Pages/Firstpage";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<GovernmentSchemeList />} />
+        <Route path="/" element={<Firstpage />} />
+        <Route path="/dashboard" element={<GovernmentSchemeList />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignIn />} />
         <Route path="/forgotpassword" element={<Forgot />} />

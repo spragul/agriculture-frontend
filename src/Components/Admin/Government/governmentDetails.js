@@ -10,7 +10,6 @@ import { Loading } from "../../../Pages/Loading";
 import Table from "react-bootstrap/Table";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import { Button } from "@mui/material";
-import { addgsrv } from "../../../Redux/governmentSlice";
 
 
 function GovernmentDetails() {
@@ -68,7 +67,6 @@ function GovernmentDetails() {
           toast.success(response.data.message);
           let add={ userid: userId, username: userName, details: view,schemeid:id }
           console.log(response.data.governmentss)
-          dispatch(addgsrv(response.data.governmentss))
         }
       } catch (error) {
         console.log(error);

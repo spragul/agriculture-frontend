@@ -43,7 +43,7 @@ function Schemefrom({datas}) {
             if (response.data.rd === true) {
               toast.success(response.data.message);
               dispatch(editgs(response.data.governments));
-              navigate("/");
+              navigate("/dashboard");
             }
           } catch (error) {
             console.log(error);

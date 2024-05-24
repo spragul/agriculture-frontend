@@ -322,3 +322,19 @@ padding: 5px;
     margin: 2px;
   }
 }
+
+
+.role-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #a9a9a942;
+  margin: 5px;
+  padding: 2px;
+}
+.role-text-area{
+  text-align: center;
+}
+.role-form{
+  text-align: center;
+}

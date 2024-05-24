@@ -46,7 +46,7 @@ function GovernmentSchemeAdd() {
       if (response.data.rd === true) {
         toast.success(response.data.message);
         dispatch(addgs(response.data.newgovernment));
-        navigate("/");
+        navigate("/dashboard");
       }
     } catch (error) {
       console.log(error);
