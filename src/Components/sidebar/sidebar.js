@@ -6,23 +6,32 @@ import {
   FaVolleyballBall,
   FaShoppingCart,
   FaLuggageCart,
-  FaCarrot
+  FaCarrot,
 } from "react-icons/fa";
 import { MdAgriculture } from "react-icons/md";
 import { GiFarmer } from "react-icons/gi";
 import { FaRegIdCard } from "react-icons/fa6";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
-import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
-import StoreIcon from '@mui/icons-material/Store';
-import AddBusinessIcon from '@mui/icons-material/AddBusiness';
-import { NavLink, useNavigate } from "react-router-dom";
+import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
+import StoreIcon from "@mui/icons-material/Store";
+import AddBusinessIcon from "@mui/icons-material/AddBusiness";
+import { NavLink, useNavigate, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
+import MenuIcon from "@mui/icons-material/Menu";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import PersonIcon from '@mui/icons-material/Person';
+import LogoutIcon from '@mui/icons-material/Logout';
 import "./sidebar.css";
+import { useState } from "react";
+import {useDispatch} from "react-redux"
+import { resetgsdata } from "../../Redux/governmentSlice";
+import { resetspdata } from "../../Redux/fpSlice";
+import { resetsddata } from "../../Redux/shopSlice";
+import { resetvegdata } from "../../Redux/vegetableSlice";
+import { resetsoildata } from "../../Redux/soilSclice";
 
 function Sidebar({ children }) {
   const Name = sessionStorage.getItem("myName");
@@ -109,7 +118,7 @@ function Sidebar({ children }) {
       path: "/scheme/list",
       name: "Schemes",
       icon: <MdAgriculture />,
-    }
+    },
   ];
   const shop = [
     {
@@ -141,7 +150,7 @@ function Sidebar({ children }) {
       path: "/scheme/list",
       name: "Schemes",
       icon: <MdAgriculture />,
-    }
+    },
   ];
 
   const users = [
@@ -158,7 +167,7 @@ function Sidebar({ children }) {
     {
       path: "/shop/list",
       name: "Shop List",
-      icon: <StoreIcon/>,
+      icon: <StoreIcon />,
     },
     {
       path: "/report/list",
@@ -169,7 +178,7 @@ function Sidebar({ children }) {
       path: "/scheme/list",
       name: "Schemes",
       icon: <MdAgriculture />,
-    }
+    },
   ];
 
   return (
@@ -256,11 +265,23 @@ export default Sidebar;
 export function NavScrollExample({ title }) {
   const navigate = useNavigate();
   const MyRole = sessionStorage.getItem("myRole");
-  function filtered() {
-    console.log("clicked");
-  }
+  const [change, setChange] = useState(false);
+  const dispatch=useDispatch()
+  console.log(change);
+  const changesty = () => {
+    if (change == true) {
+      setChange(false);
+    } else {
+      setChange(true);
+    }
+  };
   function logout() {
     sessionStorage.clear();
+   dispatch(resetspdata([]))
+   dispatch(resetgsdata([]));
+   dispatch(resetsddata([]));
+   dispatch(resetsoildata([]));
+   dispatch(resetvegdata([]));
     navigate("/login");
   }
   function adminlogin() {
@@ -283,7 +304,11 @@ export function NavScrollExample({ title }) {
           >
             {title}
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Toggle aria-controls="navbarScroll" >
+          <span>
+              <MenuIcon />
+            </span>
+          </Navbar.Toggle>
           <Navbar.Collapse id="navbarScroll">
             <Nav
               className="me-auto my-2 my-lg-0"
@@ -293,7 +318,7 @@ export function NavScrollExample({ title }) {
               <button
                 class="btn btn-outline-warning me-2"
                 type="button"
-                onClick={() => navigate("/dashboard")}
+                onClick={() => navigate("/")}
               >
                 <span>
                   <HomeIcon />
@@ -315,20 +340,46 @@ export function NavScrollExample({ title }) {
                 ""
               )}
             </Nav>
-            <button
-              class="btn btn-outline-warning me-2"
-              type="button"
-              onClick={() => logout()}
-            >
-              Logout
-            </button>
-            <button
-              class="btn btn-outline-warning me-2"
-              type="button"
-              onClick={() => adminlogin()}
-            >
-              Adminlogin
-            </button>
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 profile-menu">
+              <li className="nav-item dropdown">
+                <button
+                  className={`nav-link dropdown-toggle ${
+                    change === true ? "show" : ""
+                  }`}
+                  id="navbarDropdown"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded={change}
+                  value={change}
+                  onClick={(e) => changesty()}
+                >
+                  <div className="profile-pic">
+                    <img
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz-dSbbpNWBQ8jn0wehN-QYp2CjBSHgdgeRw&s"
+                      alt="Profile Picture"
+                    />
+                  </div>
+                </button>
+                <ul
+                  className={`dropdown-menu ${change === true ? "show" : ""}`}
+                  aria-labelledby="navbarDropdown"
+                >
+                  <li>
+                    <button className="dropdown-item" type="button" onClick={()=>navigate("/updateuser")}>
+                      <PersonIcon/> Account
+                    </button>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  <li>
+                    <button className="dropdown-item" type="button" onClick={()=>logout()}>
+                      <LogoutIcon/> Log Out
+                    </button>
+                  </li>
+                </ul>
+              </li>
+            </ul>
           </Navbar.Collapse>
         </Container>
       </Navbar>

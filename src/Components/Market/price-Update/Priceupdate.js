@@ -15,7 +15,7 @@ function Priceupdate() {
     <Sidebar>
       <div>
         <h1 className="table-header">Vegetable List</h1>
-        <Table striped bordered hover variant="dark">
+        <Table striped bordered hover variant="dark" className="order-table">
           <thead>
             <tr>
               <th>vegetable ID</th>

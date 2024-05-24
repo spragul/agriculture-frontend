@@ -27,8 +27,12 @@ const soilSlice = createSlice({
       let newlist = state.value.filter((val) => val._id !== id);
       state.value = newlist;
     },
+    resetsoildata:(state,action)=>{
+      state.isLoading=false;
+      state.cart=action.payload
+    }
   },
 });
 
-export const { Loaging, fetchsoilData, addsoil, editsoil, deletesoil } = soilSlice.actions;
+export const { Loaging, fetchsoilData, addsoil, editsoil, deletesoil,resetsoildata } = soilSlice.actions;
 export default soilSlice.reducer;

@@ -13,6 +13,7 @@ import {
 import Sidebar from "../../sidebar/sidebar";
 import { deleteVegetableData, getvegetale } from "../../data/vegetable";
 import { toast } from "react-toastify";
+import { Loading } from "../../../Pages/Loading";
 
 function Vegetablelist() {
   const [search, setSearch] = useState("");
@@ -155,7 +156,7 @@ function Vegetablelist() {
                   </MDBCol>
                 ))
             ) : (
-              <div>Loading</div>
+              <Loading/>
             )}
           </MDBRow>
         </MDBContainer>

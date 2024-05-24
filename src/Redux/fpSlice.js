@@ -27,8 +27,12 @@ const fertilizerSlice = createSlice({
       let newlist = state.value.filter((val) => val._id !== id);
       state.value = newlist;
     },
+    resetspdata:(state,action)=>{
+      state.isLoading=false;
+      state.cart=action.payload
+    }
   },
 });
 
-export const { Loaging, addfp, editfp, fetchfpData, deletefp } = fertilizerSlice.actions;
+export const { Loaging, addfp, editfp, fetchfpData, deletefp,resetspdata } = fertilizerSlice.actions;
 export default fertilizerSlice.reducer;

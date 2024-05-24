@@ -33,9 +33,13 @@ const vegetableSlice =createSlice({
         let id=action.payload;
         let newlist=state.value.filter((val)=>val._id!==id);
         state.value=newlist;
+      },
+      resetvegdata:(state,action)=>{
+        state.isLoading=false;
+        state.cart=action.payload
       }
     }
 })
 
-export const {Loaging,fetchData,addvege,editveg,deleteveg,displayData}=vegetableSlice.actions;
+export const {Loaging,fetchData,addvege,editveg,deleteveg,displayData,resetvegdata}=vegetableSlice.actions;
 export default vegetableSlice.reducer;

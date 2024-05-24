@@ -27,16 +27,19 @@ const governmentSlice = createSlice({
       let newlist = state.value.filter((val) => val._id !== id);
       state.value = newlist;
     },
-    addgsrv:(state,action)=>{
+    resetgsdata:(state,action)=>{
+      state.isLoading=false;
+      state.cart=action.payload
+    },
+    addgsrv: (state, action) => {
       state.isLoading = true;
       let id = action.payload._id;
-      let newlist = state.value.filter((val) => val._id == id);
-      let add=newlist.userreview.push(action.payload);
       let removeproduct = state.value.filter((val) => val._id !== id);
-      state.value = [...removeproduct, add];
-    }
+      state.value = [...removeproduct, action.payload];
+    },
+
   }
 });
 
-export const { Loaging, addgs,editgs,deletegs,fetchgsData } = governmentSlice.actions;
+export const { Loaging, addgs,editgs,deletegs,fetchgsData,addgsrv,resetgsdata } = governmentSlice.actions;
 export default governmentSlice.reducer;

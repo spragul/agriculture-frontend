@@ -11,6 +11,7 @@ import axios from "axios";
 import { deletegs } from "../../../Redux/governmentSlice";
 import { getgovernmentdata } from "../../data/scheme";
 import { toast } from "react-toastify";
+import AspectRatioIcon from '@mui/icons-material/AspectRatio';
 
 function GovernmentSchemeList() {
   const [search, setSearch] = useState("");
@@ -61,7 +62,7 @@ function GovernmentSchemeList() {
   return (
     <Sidebar>
       <div>
-        <div className="gs-list-container">
+        <div className="gss-container">
           <div className="search-container">
             <input
               placeholder="Search Scheme Name"
@@ -82,23 +83,29 @@ function GovernmentSchemeList() {
                       .includes(search.toLowerCase());
               })
               .map((item, index) => (
-                <div key={index} className="gs-list-card">
-                  <div className="gs-image-container">
+                <div key={index} className="gss-card">
+                  <div className="gss-img-container">
                     <img
+                      className="gss-img"
                       src={item.image}
-                      title={item.schemename}
-                      alt={item.schemename}
+                      alt=" "
+                      title=""
                     />
                   </div>
-                  <div className="gs-text-area">
-                    <h3>{item.schemename}</h3>
-                    <p>{item.discription}</p>
+                  <div className="gss-details">
+                    <h1>{item.schemename}</h1>
+                    <h3>{item.discription}</h3>
                     <p>{item.startingdate}</p>
                     <div className="d-grid gap-3 d-md-block">
-                    <button className="mybutton detailsbutton"
-                     onClick={()=>navigate(`/scheme/details/${item._id}`)}>
-                      Shop Details
-                    </button>
+                      <Button
+                        variant="outlined"
+                        color="success"
+                        onClick={() => navigate(`/scheme/details/${item._id}`)}
+                        startIcon={<AspectRatioIcon />}
+                      >
+                        Shop Details
+                      </Button>
+
                       {myRole === "admin" ? (
                         <Button
                           variant="outlined"
@@ -129,7 +136,7 @@ function GovernmentSchemeList() {
                       )}
                     </div>
                   </div>
-                  </div>
+                </div>
               ))
           ) : (
             <Loading />

@@ -26,6 +26,7 @@ export default function Home(){
         <Link to={"/report/list"}>Soil report</Link>
         <hr/>
         <Link to={"/report/add"}>Soil add</Link>
+        
         </div>
         </Sidebar>
     )

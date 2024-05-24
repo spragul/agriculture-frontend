@@ -26,9 +26,13 @@ const shopSlice =createSlice({
         let id=action.payload;
         let newlist=state.value.filter((val)=>val._id!==id);
         state.value=newlist;
-      }
+      },
+      resetsddata:(state,action)=>{
+        state.isLoading=false;
+        state.cart=action.payload
+      },
     }
 })
 
-export const {Loaging,fetchshopData,addsd,editsd,deletesd}=shopSlice.actions;
+export const {Loaging,fetchshopData,addsd,editsd,deletesd,resetsddata}=shopSlice.actions;
 export default shopSlice.reducer;

@@ -4,7 +4,6 @@ import Login from "./Pages/Login/login";
 import SignIn from "./Pages/Signup/signup";
 import { Forgot } from "./Pages/ForgotPassword/ForgotPassword";
 import Reset from "./Pages/ResetPassword/ResetPassword";
-import Home from "./home";
 import AddShopOwner from "./Components/Admin/shop/AddShopOwner/AddShopOwner";
 import UpdateUser from "./Pages/Role/roleUser";
 import Addvegetable from "./Components/Market/addmarket/addmarketvegetable";
@@ -24,12 +23,13 @@ import GovernmentSchemeAdd from "./Components/Admin/Government/GovernmentSchemeA
 import GovernmentEditScheme from "./Components/Admin/Government/GovernmentEditScheme";
 import GovernmentSchemeList from "./Components/Admin/Government/GovernmentSchemeList";
 import GovernmentDetails from "./Components/Admin/Government/governmentDetails";
+import Userlist from "./Components/Admin/admin";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<GovernmentSchemeList />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignIn />} />
         <Route path="/forgotpassword" element={<Forgot />} />
@@ -51,8 +51,8 @@ function App() {
         <Route path="/report/edit/:id" element={<EditReport />} />
         <Route path="/scheme/add" element={<GovernmentSchemeAdd />} />
         <Route path="/scheme/edit/:id" element={<GovernmentEditScheme />} />
-        <Route path="/scheme/list" element={<GovernmentSchemeList />} />
         <Route path="/scheme/details/:id" element={<GovernmentDetails />} />
+        <Route path="/admin" element={<Userlist />} />
       </Routes>
     </div>
   );

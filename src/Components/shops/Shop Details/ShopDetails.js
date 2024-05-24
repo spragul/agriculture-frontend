@@ -89,7 +89,7 @@ function ShopDetails() {
             {fpdatas.length>0 ? (
               <div>
                 <h1 className="table-header">Fertilizer List</h1>
-                <Table striped bordered hover variant="dark">
+                <Table striped bordered hover variant="dark" className="order-table">
                   <thead>
                     <tr>
                       <th>FP ID</th>

@@ -10,6 +10,8 @@ import { Loading } from "../../../Pages/Loading";
 import Table from "react-bootstrap/Table";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import { Button } from "@mui/material";
+import { addgsrv } from "../../../Redux/governmentSlice";
+
 
 function GovernmentDetails() {
   const [view, setView] = useState("");
@@ -62,6 +64,12 @@ function GovernmentDetails() {
           { headers: { Authorization: `Bearer ${token}` } }
         );
         console.log(response);
+        if(response.data.rd===true){
+          toast.success(response.data.message);
+          let add={ userid: userId, username: userName, details: view,schemeid:id }
+          console.log(response.data.governmentss)
+          dispatch(addgsrv(response.data.governmentss))
+        }
       } catch (error) {
         console.log(error);
       }
@@ -111,7 +119,7 @@ function GovernmentDetails() {
         <div className="user-reviews">
           <h2>User review</h2>
           {detail.userreview ? (
-            <Table striped bordered hover variant="dark">
+            <Table striped bordered hover variant="dark" className="order-table">
               <thead>
                 <tr>
                   <th>User Name</th>
