@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addsoil } from "../../../Redux/soilSclice";
 import { useNavigate } from "react-router-dom";
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 //Add schema
 const reportSchema = yup.object({
@@ -18,6 +18,7 @@ const reportSchema = yup.object({
     .string()
     .min(3, "Enter minmum 3 characters")
     .required("Enter Soil Test Name"),
+  soiluser: yup.string().required("Enter Report Geting person Id"),
   submittedby: yup
     .string()
     .min(3, "Enter minmum 3 characters")
@@ -30,20 +31,28 @@ function Addreport() {
   const token = sessionStorage.getItem("token");
   const userId = sessionStorage.getItem("myid");
   const dispatch = useDispatch();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
-  async function addsoildetails({soil}) {
+  async function addsoildetails({ soil }) {
+    console.log(soil);
+    const soiladd = {
+      soiltest: soil.soiltest,
+      submittedby: soil.submittedby,
+      testreportdate: soil.testreportdate,
+      reportdetails: soil.reportdetails,
+    };
+    let idss = soil.soiluser;
     try {
       const response = await axios.post(
-        `${backendurl}/soilreport/addsr/${userId}`,
-        soil,
-        { headers: {"Authorization" : `Bearer ${token}`}}
+        `${backendurl}/soilreport/addsr/${idss}`,
+        soiladd,
+        { headers: { Authorization: `Bearer ${token}` } }
       );
-      console.log(response);                                                                    
+      console.log(response);
       if (response.data.rd === true) {
         toast.success(response.data.message);
         dispatch(addsoil(response.data.newsoil));
-        navigate("/report/list")
+        navigate("/report/list");
       }
     } catch (error) {
       toast.success(error.response.data.message);
@@ -54,6 +63,7 @@ function Addreport() {
     useFormik({
       initialValues: {
         soiltest: "",
+        soiluser: "",
         submittedby: "",
         testreportdate: "",
         reportdetails: "",
@@ -80,6 +90,16 @@ function Addreport() {
             handleChange={handleChange}
             errors={errors.soiltest}
             touched={touched.soiltest}
+          />
+          <Inputs
+            names="soiluser"
+            types="text"
+            lables="Enter test report getting person id"
+            values={values.soiluser}
+            handleBlur={handleBlur}
+            handleChange={handleChange}
+            errors={errors.soiluser}
+            touched={touched.soiluser}
           />
           <Inputs
             names="submittedby"
@@ -120,16 +140,16 @@ function Addreport() {
             Add Soil Report
           </Button>
           <Button
-          type="button"
-          fullWidth
-          variant="contained" 
-          color="success"
-          sx={{ mt: 3, mb: 2 }}
-          onClick={()=>navigate("/report/list")}
-          startIcon={<ArrowBackIosNewIcon />}
-        >
-          back
-        </Button>
+            type="button"
+            fullWidth
+            variant="contained"
+            color="success"
+            sx={{ mt: 3, mb: 2 }}
+            onClick={() => navigate("/report/list")}
+            startIcon={<ArrowBackIosNewIcon />}
+          >
+            back
+          </Button>
         </form>
       </div>
     </Sidebar>

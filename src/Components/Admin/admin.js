@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { backendurl } from "../../Backendlink";
 import { Loading } from "../../Pages/Loading";
 import Sidebar from "../sidebar/sidebar";
+import { tablePaginationClasses } from "@mui/material";
 
 function Userlist() {
   const [data, setData] = useState([]);
@@ -48,6 +49,7 @@ function Userlist() {
             <thead>
               <tr>
                 <th>S.No</th>
+                <th>Person Id</th>
                 <th>name</th>
                 <th>email</th>
                 <th>role</th>
@@ -60,6 +62,7 @@ function Userlist() {
               {data.map((tableItem, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
+                  <td>{tableItem._id}</td>
                   <td>{tableItem.name}</td>
                   <td>{tableItem.email}</td>
                   <td>{tableItem.role}</td>

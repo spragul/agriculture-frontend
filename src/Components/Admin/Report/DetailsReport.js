@@ -58,7 +58,7 @@ function DetailsReport() {
               </p>
               <p>
                 <span className="details-span"> toastifyest report date:</span>
-                {detail.testreportdate.split("T")[0]}
+                {detail.testreportdate}
               </p>
               <p>
                 <span className="details-span">Report details:</span>

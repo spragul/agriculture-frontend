@@ -4,7 +4,6 @@ import Login from "./Pages/Login/login";
 import SignIn from "./Pages/Signup/signup";
 import { Forgot } from "./Pages/ForgotPassword/ForgotPassword";
 import Reset from "./Pages/ResetPassword/ResetPassword";
-import UpdateUser from "./Pages/Role/roleUser";
 import Addvegetable from "./Components/Market/addmarket/addmarketvegetable";
 import Vegetablelist from "./Components/Market/vegetablelist/vegetablelist";
 import EditVegetable from "./Components/Market/edit-Vegetable/editVegetable";
@@ -26,6 +25,7 @@ import Userlist from "./Components/Admin/admin";
 import AddShopOwner from "./Components/Admin/shop/AddShopOwner/AddShopOwner";
 import Firstpage from "./Pages/Firstpage";
 import DetailsReport from "./Components/Admin/Report/DetailsReport";
+import UpdateuserAccount from "./Pages/Role/updateuserAccount";
 
 function App() {
   return (
@@ -37,7 +37,7 @@ function App() {
         <Route path="/signup" element={<SignIn />} />
         <Route path="/forgotpassword" element={<Forgot />} />
         <Route path="/resetpassword/:id/:token" element={<Reset />} />
-        <Route path="/updateuser" element={<UpdateUser />} />
+        <Route path="/updateuser" element={<UpdateuserAccount />} />
         <Route path="/adduser" element={<AddShopOwner />} />
         <Route path="/add/vegetable" element={<Addvegetable />} />
         <Route path="/list/vegetable" element={<Vegetablelist />} />

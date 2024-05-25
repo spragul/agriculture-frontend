@@ -99,7 +99,7 @@ function GovernmentSchemeAdd() {
           <Inputs
             names="image"
             types="url"
-            lables="Enter Vegetable Image URl"
+            lables="Enter Scheme Image URl"
             values={values.image}
             handleBlur={handleBlur}
             handleChange={handleChange}
