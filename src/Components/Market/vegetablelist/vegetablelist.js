@@ -112,7 +112,7 @@ function Vegetablelist() {
                         </div>
                       </MDBRipple>
                       <MDBCardBody>
-                        <div onClick={() => navigate(`/detail/${item._id}`)}>
+                        <div >
                           <div className="text-reset">
                             <h5 className="card-title mb-3">{item.name}</h5>
                           </div>

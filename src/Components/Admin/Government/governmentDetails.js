@@ -10,21 +10,23 @@ import { Loading } from "../../../Pages/Loading";
 import Table from "react-bootstrap/Table";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import { Button } from "@mui/material";
-
+import { addgsrv, deletegsrv, fetchgsrvData } from "../../../Redux/governmentSlice";
 
 function GovernmentDetails() {
   const [view, setView] = useState("");
   const [detail, setDetail] = useState({});
+  //const [rv, setRv] = useState([]);
   const userId = sessionStorage.getItem("myid");
   const token = sessionStorage.getItem("token");
   const userName = sessionStorage.getItem("myname");
   const { id } = useParams();
   const dispatch = useDispatch();
   const allScheme = useSelector((state) => state.governmentapireducer.value);
+  const rv = useSelector((state) => state.governmentapireducer.reviews);
+  console.log(rv)
   const isloading = useSelector(
     (state) => state.governmentapireducer.isLoading
   );
-  
 
   //getdata
   async function getdata() {
@@ -46,6 +48,10 @@ function GovernmentDetails() {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       console.log(response);
+      if (response.data.rd === true) {
+        toast.success(response.data.message);
+        dispatch(deletegsrv(ids));
+      }
     } catch (error) {
       console.log(error.response.data.message);
       toast.error(error.response.data.message);
@@ -63,10 +69,17 @@ function GovernmentDetails() {
           { headers: { Authorization: `Bearer ${token}` } }
         );
         console.log(response);
-        if(response.data.rd===true){
+        if (response.data.rd === true) {
           toast.success(response.data.message);
-          let add={ userid: userId, username: userName, details: view,schemeid:id }
-          console.log(response.data.governmentss)
+          let add = {
+            userid: userId,
+            username: userName,
+            details: view,
+            _id: response.data.lastReview._id,
+            schemeid: id,
+          };
+          console.log(response.data.lastReview);
+          dispatch(addgsrv(add));
         }
       } catch (error) {
         console.log(error);
@@ -83,8 +96,9 @@ function GovernmentDetails() {
     } else {
       let seleteddata = allScheme.filter((val) => val._id == id);
       setDetail(seleteddata[0]);
+      dispatch(fetchgsrvData(seleteddata[0].userreview));
     }
-  }, [isloading]);
+  }, [isloading || rv]);
 
   return (
     <Sidebar>
@@ -116,8 +130,14 @@ function GovernmentDetails() {
 
         <div className="user-reviews">
           <h2>User review</h2>
-          {detail.userreview ? (
-            <Table striped bordered hover variant="dark" className="order-table">
+          {rv ? (
+            <Table
+              striped
+              bordered
+              hover
+              variant="dark"
+              className="order-table"
+            >
               <thead>
                 <tr>
                   <th>User Name</th>
@@ -125,7 +145,7 @@ function GovernmentDetails() {
                   <th>Button</th>
                 </tr>
               </thead>
-              {detail.userreview.map((item, index) => (
+              {rv.map((item, index) => (
                 <tbody>
                   <tr key={index}>
                     <td>{item.username}</td>

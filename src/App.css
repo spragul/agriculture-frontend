@@ -355,3 +355,29 @@ flex-direction: column;
 height: 100vb;
 background-color: #f1a0e8;
 }
+
+/*admin*/
+.admin-container{
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 3px;
+margin: 5px;
+background-color: #fbfb94;
+}
+.admin-container h2 {
+  text-align: center;
+  text-transform: capitalize;
+
+}
+.search-admin-container{
+text-align: center;
+}
+.search-admin-bar{
+border:2px solid #ff00e0;
+border-radius: 50px;
+width: 400px;
+height: 35px;
+padding: 4px;
+}
+/*admin*/

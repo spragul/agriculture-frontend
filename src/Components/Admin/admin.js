@@ -9,6 +9,7 @@ import { tablePaginationClasses } from "@mui/material";
 
 function Userlist() {
   const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
   const myid = sessionStorage.getItem("myid");
   const token = sessionStorage.getItem("token");
 
@@ -36,8 +37,16 @@ function Userlist() {
   return (
     <Sidebar>
       {data.length > 0 ? (
-        <div>
-          <h2>User list</h2>
+        <div className="admin-container">
+          
+          <div className="search-admin-container">
+          <input
+            placeholder="Search userName, email, _id"
+            className="search-admin-bar"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+        <h2>User list</h2>
           <Table
             responsive
             striped
@@ -59,7 +68,13 @@ function Userlist() {
               </tr>
             </thead>
             <tbody>
-              {data.map((tableItem, index) => (
+              {data.filter((item) => {
+                return search.toLowerCase() === ""
+                  ? item
+                  : item.name.toLowerCase().includes(search.toLowerCase()) ||
+                  item.email.toLowerCase().includes(search.toLowerCase()) ||
+                  item._id.toLowerCase().includes(search.toLowerCase())
+              }).map((tableItem, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{tableItem._id}</td>
